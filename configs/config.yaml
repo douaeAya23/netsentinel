@@ -1,0 +1,10 @@
+paths:
+  raw_dir: data/raw
+  processed_dir: data/processed
+  reports_dir: reports
+
+spark:
+  app_name: NetSentinel
+  master: "local[*]"
+  shuffle_partitions: 8
+  driver_memory: 4g
