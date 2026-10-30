@@ -26,6 +26,8 @@ src = ["src", "tests"]
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "N", "B"]
+# L'alias `F` pour pyspark.sql.functions est la convention de l'écosystème PySpark
+ignore = ["N812"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

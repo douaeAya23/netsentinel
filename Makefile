@@ -1,4 +1,4 @@
-.PHONY: install lint format test
+.PHONY: install lint format test prepare
 
 install:
 	pip install -e ".[dev]"
@@ -11,3 +11,6 @@ format:
 
 test:
 	pytest
+
+prepare:
+	python -m netsentinel.jobs.prepare_data
