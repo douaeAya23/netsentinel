@@ -15,9 +15,15 @@ def plot_class_distribution(distribution: pd.DataFrame, output: Path) -> Path:
     ax.invert_yaxis()
     ax.set_xlabel("Nombre de flux (échelle logarithmique)")
     ax.set_title("Distribution des classes (CIC-IDS2017 nettoyé)")
-    for bar, percent in zip(bars, distribution["percent"], strict=True):
+    ax.set_xlim(right=distribution["count"].max() * 50)
+    for bar, count, percent in zip(
+        bars, distribution["count"], distribution["percent"], strict=True
+    ):
         ax.text(
-            bar.get_width(), bar.get_y() + bar.get_height() / 2, f" {percent:.3f} %", va="center"
+            bar.get_width(),
+            bar.get_y() + bar.get_height() / 2,
+            f" {count} ({percent:.3f} %)",
+            va="center",
         )
     return _save(fig, output)
 
