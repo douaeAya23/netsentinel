@@ -1,7 +1,7 @@
 """Features analysées en EDA, avec leur intérêt pour la détection d'intrusions."""
 
 KEY_FEATURE_DESCRIPTIONS: dict[str, str] = {
-    "flow_duration": "Durée du flux (µs) : les scans sont très courts, les attaques lentes très longs",
+    "flow_duration": "Durée du flux (µs) : courte pour un scan, longue pour une attaque lente",
     "total_fwd_packets": "Paquets envoyés par l'émetteur de la connexion",
     "total_backward_packets": "Paquets de réponse : un scan en reçoit souvent peu ou pas",
     "total_length_of_fwd_packets": "Octets envoyés par l'émetteur",
@@ -13,8 +13,8 @@ KEY_FEATURE_DESCRIPTIONS: dict[str, str] = {
     "average_packet_size": "Taille moyenne globale des paquets du flux",
     "syn_flag_count": "Drapeaux SYN (ouverture de connexion TCP) : au cœur des scans de ports",
     "ack_flag_count": "Drapeaux ACK : reflètent une conversation TCP établie",
-    "psh_flag_count": "Drapeaux PSH : envoi immédiat de données, fréquent dans les échanges applicatifs",
-    "init_win_bytes_forward": "Fenêtre TCP initiale : dépend de l'outil et du système de l'émetteur",
+    "psh_flag_count": "Drapeaux PSH : envoi immédiat des données applicatives",
+    "init_win_bytes_forward": "Fenêtre TCP initiale : dépend de l'outil de l'émetteur",
 }
 
 KEY_FEATURES: tuple[str, ...] = tuple(KEY_FEATURE_DESCRIPTIONS)
