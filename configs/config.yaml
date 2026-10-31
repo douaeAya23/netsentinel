@@ -15,3 +15,15 @@ features:
   correlation_threshold: 0.95
   excluded_columns:
     - destination_port
+
+modeling:
+  random_seed: 42
+  benign_cap: 400000
+  attack_cap: 60000
+  logistic_max_iter: 50
+  forest_num_trees: 30
+  forest_max_depth: 12
+  suspect_features:
+    - init_win_bytes_forward
+    - init_win_bytes_backward
+    - psh_flag_count

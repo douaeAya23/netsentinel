@@ -1,0 +1,6 @@
+experiment,task,model,features,accuracy,macro_f1,fit_seconds
+binary_logistic_regression,binary,logistic_regression,46,0.9540,0.9207,16.3490
+binary_random_forest,binary,random_forest,46,0.9972,0.9950,28.3245
+family_logistic_regression,family,logistic_regression,46,0.9653,0.5913,12.8641
+family_random_forest,family,random_forest,46,0.9969,0.9252,35.1948
+family_random_forest_without_suspects,family,random_forest,43,0.9965,0.9257,30.7847
