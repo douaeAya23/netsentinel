@@ -8,3 +8,10 @@ spark:
   master: "local[*]"
   shuffle_partitions: 8
   driver_memory: 4g
+
+features:
+  train_fraction: 0.8
+  random_seed: 42
+  correlation_threshold: 0.95
+  excluded_columns:
+    - destination_port

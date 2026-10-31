@@ -22,9 +22,18 @@ class SparkConfig:
 
 
 @dataclass(frozen=True)
+class FeaturesConfig:
+    train_fraction: float
+    random_seed: int
+    correlation_threshold: float
+    excluded_columns: tuple[str, ...]
+
+
+@dataclass(frozen=True)
 class AppConfig:
     paths: PathsConfig
     spark: SparkConfig
+    features: FeaturesConfig
 
 
 def load_config(path: Path) -> AppConfig:
@@ -35,4 +44,9 @@ def load_config(path: Path) -> AppConfig:
     return AppConfig(
         paths=PathsConfig(**{key: Path(value) for key, value in raw["paths"].items()}),
         spark=SparkConfig(**raw["spark"]),
+        features=_load_features(raw["features"]),
     )
+
+
+def _load_features(raw: dict) -> FeaturesConfig:
+    return FeaturesConfig(**{**raw, "excluded_columns": tuple(raw["excluded_columns"])})

@@ -14,7 +14,12 @@ def test_load_config_returns_typed_values(tmp_path: Path) -> None:
         "  app_name: Test\n"
         "  master: 'local[1]'\n"
         "  shuffle_partitions: 2\n"
-        "  driver_memory: 1g\n",
+        "  driver_memory: 1g\n"
+        "features:\n"
+        "  train_fraction: 0.8\n"
+        "  random_seed: 42\n"
+        "  correlation_threshold: 0.95\n"
+        "  excluded_columns: [destination_port]\n",
         encoding="utf-8",
     )
 
@@ -22,3 +27,4 @@ def test_load_config_returns_typed_values(tmp_path: Path) -> None:
 
     assert config.paths.raw_dir == Path("data/raw")
     assert config.spark.shuffle_partitions == 2
+    assert config.features.excluded_columns == ("destination_port",)
