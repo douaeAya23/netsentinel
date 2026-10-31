@@ -1,4 +1,4 @@
-.PHONY: install lint format test prepare
+.PHONY: install lint format test prepare eda
 
 install:
 	pip install -e ".[dev]"
@@ -14,3 +14,6 @@ test:
 
 prepare:
 	python -m netsentinel.jobs.prepare_data
+
+eda:
+	python -m netsentinel.jobs.run_eda

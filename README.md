@@ -20,6 +20,7 @@ Le job ingère les CSV avec un schéma explicite, nettoie les données (voir
 python -m venv .venv
 source .venv/bin/activate        # Windows : .venv\Scripts\activate
 make install
+pip install -e ".[notebook]"   # optionnel : pour exécuter le notebook d'EDA
 make test
 ```
 
