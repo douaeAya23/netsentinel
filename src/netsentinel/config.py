@@ -30,10 +30,22 @@ class FeaturesConfig:
 
 
 @dataclass(frozen=True)
+class ModelingConfig:
+    random_seed: int
+    benign_cap: int
+    attack_cap: int
+    logistic_max_iter: int
+    forest_num_trees: int
+    forest_max_depth: int
+    suspect_features: tuple[str, ...]
+
+
+@dataclass(frozen=True)
 class AppConfig:
     paths: PathsConfig
     spark: SparkConfig
     features: FeaturesConfig
+    modeling: ModelingConfig
 
 
 def load_config(path: Path) -> AppConfig:
@@ -45,8 +57,13 @@ def load_config(path: Path) -> AppConfig:
         paths=PathsConfig(**{key: Path(value) for key, value in raw["paths"].items()}),
         spark=SparkConfig(**raw["spark"]),
         features=_load_features(raw["features"]),
+        modeling=_load_modeling(raw["modeling"]),
     )
 
 
 def _load_features(raw: dict) -> FeaturesConfig:
     return FeaturesConfig(**{**raw, "excluded_columns": tuple(raw["excluded_columns"])})
+
+
+def _load_modeling(raw: dict) -> ModelingConfig:
+    return ModelingConfig(**{**raw, "suspect_features": tuple(raw["suspect_features"])})

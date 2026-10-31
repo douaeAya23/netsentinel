@@ -19,7 +19,15 @@ def test_load_config_returns_typed_values(tmp_path: Path) -> None:
         "  train_fraction: 0.8\n"
         "  random_seed: 42\n"
         "  correlation_threshold: 0.95\n"
-        "  excluded_columns: [destination_port]\n",
+        "  excluded_columns: [destination_port]\n"
+        "modeling:\n"
+        "  random_seed: 42\n"
+        "  benign_cap: 100\n"
+        "  attack_cap: 50\n"
+        "  logistic_max_iter: 10\n"
+        "  forest_num_trees: 30\n"
+        "  forest_max_depth: 5\n"
+        "  suspect_features: [a]\n",
         encoding="utf-8",
     )
 
@@ -28,3 +36,4 @@ def test_load_config_returns_typed_values(tmp_path: Path) -> None:
     assert config.paths.raw_dir == Path("data/raw")
     assert config.spark.shuffle_partitions == 2
     assert config.features.excluded_columns == ("destination_port",)
+    assert config.modeling.forest_num_trees == 30
