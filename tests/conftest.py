@@ -1,5 +1,9 @@
-import pytest
-from pyspark.sql import SparkSession
+import os
+
+os.environ.setdefault("MPLBACKEND", "Agg")  # figures sans interface graphique
+
+import pytest  # noqa: E402
+from pyspark.sql import SparkSession  # noqa: E402
 
 
 @pytest.fixture(scope="session")
